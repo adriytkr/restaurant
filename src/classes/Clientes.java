@@ -4,15 +4,17 @@ public class Clientes {
     private String cpf;
     private String nome;
     private String sexo;
+    private String senha;
     private int idade;
     private String endereco;
     private String email;
     private String telefone;
     private String dataCadastro;
     
-    public Clientes(String cpf, String nome, String sexo, int idade, String endereco, String email, String telefone) {
+    public Clientes(String cpf, String nome,String senha, String sexo, int idade, String endereco, String email, String telefone) {
         this.cpf = cpf;
         this.nome = nome;
+        this.senha = senha;
         this.sexo = sexo;
         this.idade = idade;
         this.endereco = endereco;
@@ -68,5 +70,12 @@ public class Clientes {
     }
     public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

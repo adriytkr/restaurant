@@ -13,7 +13,7 @@ public class conexao {
     public static Connection getConexao(){
         try {
             if (conn == null) {
-                conn = DriverManager.getConnection(url, usuario, senha);
+                conn = DriverManager.getConnection(url, usuario,senha);
                 return conn;
             }else{
                 return conn;
