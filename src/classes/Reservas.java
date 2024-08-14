@@ -1,5 +1,4 @@
-package Classes;
-
+package src.classes;
 public class Reservas {
     private String dataReserva;
     private int mesa;   

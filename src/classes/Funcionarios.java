@@ -1,6 +1,6 @@
-package Classes;
+package src.classes;
 
-public class Clientes {
+public class Funcionarios {
     private String cpf;
     private String nome;
     private String sexo;
@@ -8,9 +8,11 @@ public class Clientes {
     private String endereco;
     private String email;
     private String telefone;
-    private String dataCadastro;
-    
-    public Clientes(String cpf, String nome, String sexo, int idade, String endereco, String email, String telefone) {
+    private String dataContratacao;
+    private String cargo;
+
+    public Funcionarios(String cpf, String nome, String sexo, int idade, String endereco, String email, String telefone,
+            String dataContratacao, String cargo) {
         this.cpf = cpf;
         this.nome = nome;
         this.sexo = sexo;
@@ -18,55 +20,63 @@ public class Clientes {
         this.endereco = endereco;
         this.email = email;
         this.telefone = telefone;
+        this.dataContratacao = dataContratacao;
+        this.cargo = cargo;
     }
-    
+
     // GETTERS E SETTERS
     public String getCpf() {
-        return this.cpf;
+        return cpf;
     }
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     public String getNome() {
-        return this.nome;
+        return nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
     }
     public String getSexo() {
-        return this.sexo;
+        return sexo;
     }
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
     public int getIdade() {
-        return this.idade;
+        return idade;
     }
     public void setIdade(int idade) {
         this.idade = idade;
     }
     public String getEndereco() {
-        return this.endereco;
+        return endereco;
     }
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
     public String getEmail() {
-        return this.email;
+        return email;
     }
     public void setEmail(String email) {
         this.email = email;
     }
     public String getTelefone() {
-        return this.telefone;
+        return telefone;
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public String getDataCadastro() {
-        return this.dataCadastro;
+    public String getDataContratacao() {
+        return dataContratacao;
     }
-    public void setDataCadastro(String dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataContratacao(String dataContratacao) {
+        this.dataContratacao = dataContratacao;
+    }
+    public String getCargo() {
+        return cargo;
+    }
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 }

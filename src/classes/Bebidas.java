@@ -1,11 +1,11 @@
-package Classes;
+package src.classes;
 
-public class Pratos {
+public class Bebidas {
     private String nome;
     private String descricao;
     private float valor;
     
-    public Pratos(String nome, String descricao, float valor) {
+    public Bebidas(String nome, String descricao, float valor) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;

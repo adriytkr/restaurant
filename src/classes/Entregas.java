@@ -1,4 +1,4 @@
-package Classes;
+package src.classes;
 
 public class Entregas {
     private String endereco;
