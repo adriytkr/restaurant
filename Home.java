@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.GridBagConstraints;
 
 public class Home{
   public static JFrame frame=new JFrame("AAA");
@@ -53,9 +51,11 @@ public class Home{
     // gbc.insets=new Insets(0,0,0,0);
     // homePage.add(loginButton,gbc);
 
-    // frame.add(homePage);
-    frame.setLayout(null);
-    frame.add(registerPage);
+    JPanel fixedPanel=new JPanel(new GridBagLayout());
+    fixedPanel.setPreferredSize(frame.getSize());
+
+    fixedPanel.add(registerPage);
+    frame.add(fixedPanel);
     frame.setSize(800,800);
     frame.setVisible(true);
   }
