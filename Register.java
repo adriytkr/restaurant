@@ -5,7 +5,7 @@ import java.awt.Insets;
 import javax.swing.*;
 
 public class Register extends JPanel{
-  public Register(){
+  public Register(Restaurant restaurant){
     // JPanel fixedPanel=new JPanel(new GridBagLayout());
     // fixedPanel.setPreferredSize(this.getSize());
 
@@ -74,5 +74,13 @@ public class Register extends JPanel{
     gbc.gridx=1;
     gbc.anchor=GridBagConstraints.EAST;
     this.add(registerButton,gbc);
+
+    backButton.addActionListener(e->{
+      restaurant.goToPage(Restaurant.Page.HOME);
+    });
+
+    registerButton.addActionListener(e->{
+      System.out.println("Register xD");
+    });
   }
 }

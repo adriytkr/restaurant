@@ -3,8 +3,8 @@ import javax.swing.JPanel;
 
 public class Restaurant extends JFrame{
   public Home homePage=new Home(this);
-  public Login loginPage=new Login();
-  public Register registerPage=new Register();
+  public Login loginPage=new Login(this);
+  public Register registerPage=new Register(this);
 
   public static enum Page{
     HOME,
