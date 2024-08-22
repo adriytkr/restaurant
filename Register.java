@@ -1,74 +1,95 @@
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.*;
-// import java.awt.GridLayout;
-// import java.awt.Color;
-// import java.awt.Dimension;
-// import java.awt.Font;
 
 public class Register extends JPanel{
   public Register(){
-    JLabel welcomeMessage=new JLabel("This is the register page");
+    JLabel nameLabel=new JLabel("Full name");
+    JLabel cpfLabel=new JLabel("CPF");
+    JLabel emailLabel=new JLabel("Email");
+    JLabel phoneLabel=new JLabel("Phone");
+    JLabel passwordLabel=new JLabel("Password");
+    JTextField nameInput=new JTextField();
+    JTextField cpfInput=new JTextField();
+    JTextField emailInput=new JTextField();
+    JTextField phoneInput=new JTextField();
+    JTextField passwordInput=new JTextField();
 
-    this.add(welcomeMessage);
+    this.setSize(450,500);
+    this.setLayout(new GridBagLayout());
+    GridBagConstraints gbc=new GridBagConstraints();
+    gbc.insets=new Insets(0,25,25,0);
+
+    gbc.gridy=0;
+    gbc.gridx=0;
+    this.add(nameLabel,gbc);
+
+    gbc.gridy=1;
+    gbc.gridx=0;
+    this.add(cpfLabel,gbc);
+
+    gbc.gridy=2;
+    gbc.gridx=0;
+    this.add(emailLabel,gbc);
+
+    gbc.gridy=3;
+    gbc.gridx=0;
+    this.add(phoneLabel,gbc);
+
+    gbc.gridy=4;
+    gbc.gridx=0;
+    this.add(passwordLabel,gbc);
+
+    // ffsfsfs
+    gbc.gridy=0;
+    gbc.gridx=2;
+    gbc.fill=GridBagConstraints.HORIZONTAL;
+    gbc.weightx=1;
+    this.add(nameInput,gbc);
+
+    gbc.gridy=1;
+    gbc.gridx=2;
+    gbc.fill=GridBagConstraints.HORIZONTAL;
+    gbc.weightx=1;
+    this.add(cpfInput,gbc);
+
+    gbc.gridy=2;
+    gbc.gridx=2;
+    gbc.fill=GridBagConstraints.HORIZONTAL;
+    gbc.weightx=1;
+    this.add(emailInput,gbc);
+
+    gbc.gridy=3;
+    gbc.gridx=2;
+    gbc.fill=GridBagConstraints.HORIZONTAL;
+    gbc.weightx=1;
+    this.add(phoneInput,gbc);
+
+    gbc.gridy=4;
+    gbc.gridx=2;
+    gbc.fill=GridBagConstraints.HORIZONTAL;
+    gbc.weightx=1;
+    this.add(passwordInput,gbc);
+
+    // JButton backButton=new JButton("Back");
+    // JButton registerButton=new JButton("Register");
+    // JLabel gap=new JLabel("");
+
+    // gbc.gridy=5;
+    // gbc.gridx=0;
+    // this.add(backButton,gbc);
+
+    // gbc.gridy=5;
+    // gbc.gridx=1;
+    // gbc.fill=GridBagConstraints.HORIZONTAL;
+    // gbc.weightx=1;
+    // this.add(gap,gbc);
+
+
+    // gbc.gridy=5;
+    // gbc.gridx=2;
+    // this.add(registerButton,gbc);
   }
-
-  // public static void main(String[] args){
-    // JFrame frame=new JFrame("Register");
-    // JLabel welcomeMessage=new JLabel("This is the register page");
-
-    // frame.add(welcomeMessage);
-    // frame.setSize(500,500);
-    // frame.setVisible(true);
-
-    // JFrame frame=new JFrame("AAA");
-    // Font primaryFont=new Font("Arial",Font.PLAIN,36);
-    // Font secondaryFont=new Font("Arial",Font.BOLD,24);
-
-    // JLabel usernameLabel=new JLabel("Username");
-    // JLabel emailLabel=new JLabel("Email");
-    // JLabel passwordLabel=new JLabel("Password");
-    // usernameLabel.setFont(secondaryFont);
-    // emailLabel.setFont(secondaryFont);
-    // passwordLabel.setFont(secondaryFont);
-
-    // JTextField usernameInput=new JTextField();
-    // JTextField emailInput=new JTextField();
-    // JTextField passwordInput=new JTextField();
-    // usernameInput.setFont(primaryFont);
-    // emailInput.setFont(primaryFont);
-    // passwordInput.setFont(primaryFont);
-
-    // int fontSize=primaryFont.getSize();
-    // usernameInput.setPreferredSize(new Dimension(150,fontSize));
-    // emailInput.setPreferredSize(new Dimension(150,fontSize));
-    // passwordInput.setPreferredSize(new Dimension(150,fontSize));
-
-
-    // JButton submitButton=new JButton("Submit");
-    // submitButton.setBackground(Color.BLACK);
-    // submitButton.setForeground(Color.WHITE);
-    // submitButton.setFont(primaryFont);
-
-    // JPanel panel=new JPanel();
-    // panel.setLayout(new GridLayout(7,1,10,10));
-    // panel.setBounds(150,250,500,300);
-
-    // panel.add(usernameLabel);
-    // panel.add(usernameInput);
-    // panel.add(emailLabel);
-    // panel.add(emailInput);
-    // panel.add(passwordLabel);
-    // panel.add(passwordInput);
-    // panel.add(submitButton);
-
-    // JLabel title=new JLabel("Sign up form");
-    // title.setBounds(150,50,300,150);
-    // title.setFont(new Font("Arial",Font.BOLD,36));
-
-    // frame.add(title);
-    // frame.add(panel);
-    // frame.setSize(800,800);
-    // frame.setLocationRelativeTo(null);
-    // frame.setLayout(null);
-    // frame.setVisible(true);
-  // }
 }

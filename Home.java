@@ -28,36 +28,35 @@ public class Home{
   }
 
   public static void main(String[] args){
-    homePage.setLayout(new GridBagLayout());
+    // homePage.setLayout(new GridBagLayout());
     
-    Button registerButton=new Button("Register");
-    Button loginButton=new Button("Login");
+    // Button registerButton=new Button("Register");
+    // Button loginButton=new Button("Login");
 
-    registerButton.addActionListener(e->{
-      goToPage(Page.REGISTER);
-    });
+    // registerButton.addActionListener(e->{
+    //   goToPage(Page.REGISTER);
+    // });
 
-    loginButton.addActionListener(e->{
-      goToPage(Page.LOGIN);
-    });
+    // loginButton.addActionListener(e->{
+    //   goToPage(Page.LOGIN);
+    // });
 
-    GridBagConstraints gbc=new GridBagConstraints();
+    // GridBagConstraints gbc=new GridBagConstraints();
 
-    gbc.gridy=0;
-    gbc.fill=1;
-    gbc.insets=new Insets(0,0,75,0);
-    homePage.add(registerButton,gbc);
+    // gbc.gridy=0;
+    // gbc.fill=1;
+    // gbc.insets=new Insets(0,0,75,0);
+    // homePage.add(registerButton,gbc);
 
-    gbc.gridy=1;
-    gbc.fill=1;
-    gbc.insets=new Insets(0,0,0,0);
-    homePage.add(loginButton,gbc);
+    // gbc.gridy=1;
+    // gbc.fill=1;
+    // gbc.insets=new Insets(0,0,0,0);
+    // homePage.add(loginButton,gbc);
 
-    frame.add(homePage);
-    // frame.add(registerPanel);
+    // frame.add(homePage);
+    frame.setLayout(null);
+    frame.add(registerPage);
     frame.setSize(800,800);
-    frame.setLocationRelativeTo(null);
-    frame.setLayout(new GridBagLayout());
     frame.setVisible(true);
   }
 }
