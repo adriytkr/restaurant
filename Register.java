@@ -6,6 +6,12 @@ import javax.swing.*;
 
 public class Register extends JPanel{
   public Register(){
+    // JPanel fixedPanel=new JPanel(new GridBagLayout());
+    // fixedPanel.setPreferredSize(this.getSize());
+
+    // fixedPanel.add(homePage);
+    // this.add(fixedPanel);
+
     JLabel nameLabel=new JLabel("Full name");
     JLabel cpfLabel=new JLabel("CPF");
     JLabel emailLabel=new JLabel("Email");
@@ -20,67 +26,53 @@ public class Register extends JPanel{
     this.setPreferredSize(new Dimension(450,500));
     this.setLayout(new GridBagLayout());
 
-    this.add(
-      nameLabel,
-      new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,0),3,3)
-    );
+    GridBagConstraints gbc=new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,0),3,3);
 
-    this.add(
-      cpfLabel,
-      new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,16),3,3)
-    );
+    this.add(nameLabel,gbc);
 
-    this.add(
-      emailLabel,
-      new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,16),3,3)
-    );
+    gbc.gridy=1;
+    this.add(cpfLabel,gbc);
 
-    this.add(
-      phoneLabel,
-      new GridBagConstraints(0,3,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,16),3,3)
-    );
+    gbc.gridy=2;
+    this.add(emailLabel,gbc);
 
-    this.add(
-      passwordLabel,
-      new GridBagConstraints(0,4,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,16),3,3)
-    );
+    gbc.gridy=3;
+    this.add(phoneLabel,gbc);
 
-    this.add(
-      nameInput,
-      new GridBagConstraints(1,0,2,1,1,0,GridBagConstraints.WEST,1,new Insets(0,0,10,0),3,3)
-    );
+    gbc.gridy=4;
+    this.add(passwordLabel,gbc);
 
-    this.add(
-      cpfInput,
-      new GridBagConstraints(2,1,1,1,1,0,GridBagConstraints.WEST,1,new Insets(0,0,10,0),3,3)
-    );
+    gbc.fill=1;
+    gbc.weightx=1;
+    gbc.gridx=1;
 
-    this.add(
-      emailInput,
-      new GridBagConstraints(1,2,2,1,1,0,GridBagConstraints.WEST,1,new Insets(0,0,10,0),3,3)
-    );
+    gbc.gridy=0;
+    this.add(nameInput,gbc);
 
-    this.add(
-      phoneInput,
-      new GridBagConstraints(1,3,2,1,1,0,GridBagConstraints.WEST,1,new Insets(0,0,10,0),3,3)
-    );
+    gbc.gridy=1;
+    this.add(cpfInput,gbc);
 
-    this.add(
-      passwordInput,
-      new GridBagConstraints(1,4,2,1,1,0,GridBagConstraints.WEST,1,new Insets(0,0,10,0),3,3)
-    );
+    gbc.gridy=2;
+    this.add(emailInput,gbc);
+
+    gbc.gridy=3;
+    this.add(phoneInput,gbc);
+
+    gbc.gridy=4;
+    this.add(passwordInput,gbc);
 
     JButton backButton=new JButton("Back");
     JButton registerButton=new JButton("Register");
 
-    this.add(
-      backButton,
-      new GridBagConstraints(0,5,1,1,0,0,GridBagConstraints.WEST,0,new Insets(0,0,10,0),3,3)
-    );
+    gbc.fill=0;
+    gbc.gridy=5;
+    gbc.weightx=0;
 
-    this.add(
-      registerButton,
-      new GridBagConstraints(2,5,1,1,0,0,GridBagConstraints.EAST,0,new Insets(0,0,10,0),3,3)
-    );
+    gbc.gridx=0;
+    this.add(backButton,gbc);
+
+    gbc.gridx=1;
+    gbc.anchor=GridBagConstraints.EAST;
+    this.add(registerButton,gbc);
   }
 }
