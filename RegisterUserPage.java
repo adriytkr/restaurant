@@ -4,8 +4,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.*;
 
-public class Register extends JPanel{
-  public Register(Restaurant restaurant){
+public class RegisterUserPage extends JPanel{
+  public RegisterUserPage(Restaurant restaurant){
     // JPanel fixedPanel=new JPanel(new GridBagLayout());
     // fixedPanel.setPreferredSize(this.getSize());
 
@@ -76,11 +76,21 @@ public class Register extends JPanel{
     this.add(registerButton,gbc);
 
     backButton.addActionListener(e->{
-      restaurant.goToPage(Restaurant.Page.HOME);
+      restaurant.goToPage(Restaurant.Page.REGISTER);
     });
 
     registerButton.addActionListener(e->{
-      System.out.println("Register xD");
+      String name=nameInput.getText();
+      String cpf=cpfInput.getText();
+      String email=emailInput.getText();
+      String phone=phoneInput.getText();
+      String password=passwordInput.getText();
+
+      System.out.println("name:"+name);
+      System.out.println("cpf:"+cpf);
+      System.out.println("email:"+email);
+      System.out.println("phone:"+phone);
+      System.out.println("password:"+password);
     });
   }
 }

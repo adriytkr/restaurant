@@ -2,14 +2,13 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Login extends JPanel{
-  public Login(Restaurant restaurant){
+public class LoginPage extends JPanel{
+  public LoginPage(Restaurant restaurant){
     JLabel emailLabel=new JLabel("Email");
     JLabel passwordLabel=new JLabel("Password");
     JTextField emailInput=new JTextField();
@@ -54,7 +53,11 @@ public class Login extends JPanel{
     });
 
     loginButton.addActionListener(e->{
-      System.out.println("Login...");
+      String email=emailInput.getText();
+      String password=passwordInput.getText();
+
+      System.out.println("email:"+email);
+      System.out.println("password:"+password);
     });
   }
 }

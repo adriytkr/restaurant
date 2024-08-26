@@ -1,11 +1,10 @@
 import javax.swing.*;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-public class Home extends JPanel{
-  public Home(Restaurant restaurant){
+public class HomePage extends JPanel{
+  public HomePage(Restaurant restaurant){
     this.setLayout(new GridBagLayout());
     
     Button registerButton=new Button("Register");
@@ -19,14 +18,11 @@ public class Home extends JPanel{
       restaurant.goToPage(Restaurant.Page.LOGIN);
     });
 
-    this.add(
-      registerButton,
-      new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.WEST,1,new Insets(0,0,75,0),3,3)
-    );
+    GridBagConstraints gbc=new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.WEST,1,new Insets(0,0,75,0),3,3);
 
-    this.add(
-      loginButton,
-      new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.WEST,1,new Insets(0,0,0,0),3,3)
-    );
+    this.add(registerButton,gbc);
+
+    gbc.gridy=1;
+    this.add(loginButton,gbc);
   }
 }
