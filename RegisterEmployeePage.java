@@ -17,7 +17,7 @@ public class RegisterEmployeePage extends JPanel{
     JLabel emailLabel=new JLabel("Email");
     JLabel phoneLabel=new JLabel("Phone");
     JLabel addressLabel=new JLabel("Adress");
-    JLabel positionLabel=new JLabel("Position");
+    JLabel roleLabel=new JLabel("Role");
     JLabel branchLabel=new JLabel("Branch");
     JLabel passwordLabel=new JLabel("Password");
     JTextField nameInput=new JTextField();
@@ -25,7 +25,7 @@ public class RegisterEmployeePage extends JPanel{
     JTextField emailInput=new JTextField();
     JTextField phoneInput=new JTextField();
     JTextField addressInput=new JTextField();
-    JTextField positionInput=new JTextField();
+    JTextField roleInput=new JTextField();
     JTextField passwordInput=new JTextField();
     
     String[] branches={"Fake Branch A","Fake Branch B","Fake Branch C"};
@@ -52,7 +52,7 @@ public class RegisterEmployeePage extends JPanel{
     this.add(addressLabel,gbc);
 
     gbc.gridy=5;
-    this.add(positionLabel,gbc);
+    this.add(roleLabel,gbc);
 
     gbc.gridy=6;
     this.add(branchLabel,gbc);
@@ -80,7 +80,7 @@ public class RegisterEmployeePage extends JPanel{
     this.add(addressInput,gbc);
 
     gbc.gridy=5;
-    this.add(positionInput,gbc);
+    this.add(roleInput,gbc);
 
     gbc.gridy=6;
     this.add(branchInput,gbc);
@@ -112,7 +112,7 @@ public class RegisterEmployeePage extends JPanel{
       String email=emailInput.getText();
       String phone=phoneInput.getText();
       String address=addressInput.getText();
-      String position=positionInput.getText();
+      String role=roleInput.getText();
       String branch=(String)branchInput.getSelectedItem();
       String password=passwordInput.getText();
 
@@ -121,7 +121,7 @@ public class RegisterEmployeePage extends JPanel{
       System.out.println("email:"+email);
       System.out.println("phone:"+phone);
       System.out.println("address:"+address);
-      System.out.println("position:"+position);
+      System.out.println("role:"+role);
       System.out.println("branch:"+branch);
       System.out.println("password:"+password);
     });
