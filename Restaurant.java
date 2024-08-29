@@ -14,6 +14,10 @@ public class Restaurant extends JFrame{
     LOGIN,
     REGISTER_EMPLOYEE,
     REGISTER_USER,
+    EMPLOYEE_HOME,
+    USER_HOME,
+    USER_ORDER,
+    USER_RESERVE,
   };
 
   public void goToPage(Page toPage){
@@ -24,6 +28,10 @@ public class Restaurant extends JFrame{
     else if(toPage==Page.REGISTER) page=new RegisterPage(this);
     else if(toPage==Page.REGISTER_EMPLOYEE) page=new RegisterEmployeePage(this);
     else if(toPage==Page.REGISTER_USER) page=new RegisterUserPage(this);
+    else if(toPage==Page.USER_HOME) page=new UserHomePage(this);
+    else if(toPage==Page.USER_ORDER) page=new UserOrderPage(this);
+    else if(toPage==Page.USER_RESERVE) page=new UserReservePage(this);
+    else if(toPage==Page.EMPLOYEE_HOME) page=new EmployeeHomePage(this);
 
     this.setContentPane(page);
     this.revalidate();

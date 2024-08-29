@@ -58,6 +58,8 @@ public class LoginPage extends JPanel{
 
       System.out.println("email:"+email);
       System.out.println("password:"+password);
+
+      restaurant.goToPage(Restaurant.Page.USER_HOME);
     });
   }
 }

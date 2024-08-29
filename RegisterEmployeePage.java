@@ -124,6 +124,8 @@ public class RegisterEmployeePage extends JPanel{
       System.out.println("role:"+role);
       System.out.println("branch:"+branch);
       System.out.println("password:"+password);
+
+      restaurant.goToPage(Restaurant.Page.EMPLOYEE_HOME);
     });
   }
 }

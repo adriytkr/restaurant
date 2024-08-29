@@ -91,6 +91,8 @@ public class RegisterUserPage extends JPanel{
       System.out.println("email:"+email);
       System.out.println("phone:"+phone);
       System.out.println("password:"+password);
+
+      restaurant.goToPage(Restaurant.Page.LOGIN);
     });
   }
 }
