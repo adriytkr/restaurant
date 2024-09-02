@@ -18,7 +18,7 @@ public class ClientesDAO {
         try (PreparedStatement ps = conexao.getConexao().prepareStatement(sql)) {
 
             // Define os valores dos parâmetros do INSERT com base na posição na consulta
-            // SQL
+            // SQL 
             ps.setString(1, cliente.getCpf());
             ps.setString(2, cliente.getNome());
             ps.setString(3, cliente.getSenha());
@@ -68,4 +68,36 @@ public class ClientesDAO {
 
     }
 
+    public static void atualizarCliente(Clientes cliente) {
+        String sql = "USE restaurante;UPDATE Clientes SET CPF=?,Nome=?,Senha=?,Sexo=?,Idade=?,Endereco=?,Email=?,Telefone? WHERE CPF=?;";
+
+        try (PreparedStatement ps = conexao.getConexao().prepareStatement(sql)) {
+
+            ps.setString(1, cliente.getCpf());
+            ps.setString(2, cliente.getNome());
+            ps.setString(3, cliente.getSenha());
+            ps.setString(4, cliente.getSexo());
+            ps.setInt(5, cliente.getIdade());
+            ps.setString(6, cliente.getEndereco());
+            ps.setString(7, cliente.getEmail());
+            ps.setString(8, cliente.getTelefone());
+            ps.setString(9, cliente.getCpf());
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deletarCliente(String cpf) {
+        String sql = "UPDATE reservas SET ID_cliente = NULL WHERE ID_cliente = ?;UPDATE pedidos SET ID_cliente = NULL WHERE ID_cliente = ?;DELETE  FROM Clientes WHERE ID_cliente = ?;";
+
+        try (PreparedStatement ps = conexao.getConexao().prepareStatement(sql)) {
+            ps.setString(1, cpf);
+            ps.setString(2, cpf);
+            ps.setString(3, cpf);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
