@@ -6,12 +6,6 @@ import javax.swing.*;
 
 public class RegisterUserPage extends JPanel{
   public RegisterUserPage(Restaurant restaurant){
-    // JPanel fixedPanel=new JPanel(new GridBagLayout());
-    // fixedPanel.setPreferredSize(this.getSize());
-
-    // fixedPanel.add(homePage);
-    // this.add(fixedPanel);
-
     JLabel nameLabel=new JLabel("Full name");
     JLabel cpfLabel=new JLabel("CPF");
     JLabel emailLabel=new JLabel("Email");

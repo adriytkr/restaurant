@@ -6,12 +6,6 @@ import javax.swing.*;
 
 public class EmployeeHomePage extends JPanel{
   public EmployeeHomePage(Restaurant restaurant){
-    // JPanel fixedPanel=new JPanel(new GridBagLayout());
-    // fixedPanel.setPreferredSize(this.getSize());
-
-    // fixedPanel.add(homePage);
-    // this.add(fixedPanel);
-
     String[] stockes={"Stock A","Stock B","Stock C","Stock D"};
 
     JLabel stockLabel=new JLabel("Stock");
