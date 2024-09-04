@@ -6,6 +6,7 @@ public class Clientes {
     private String sexo;
     private String senha;
     private int idade;
+    private int idCliente;
     private String endereco;
     private String email;
     private String telefone;
@@ -20,6 +21,20 @@ public class Clientes {
         this.endereco = endereco;
         this.email = email;
         this.telefone = telefone;
+    }
+
+    public void visualizandoCliente(){
+        System.out.println("");
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Senha: " + this.senha);
+        System.out.println("CPF: " + this.cpf);
+        System.out.println("Sexo: " + this.sexo);
+        System.out.println("Idade: " + this.idade);
+        System.out.println("Endereço: " + this.endereco);
+        System.out.println("Email: " + this.email);
+        System.out.println("Telefone: " + this.telefone);
+        System.out.println("Id_cliente: " + this.idCliente);
+        System.out.println("");
     }
     
     // GETTERS E SETTERS
@@ -77,5 +92,13 @@ public class Clientes {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 }
