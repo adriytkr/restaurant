@@ -62,6 +62,7 @@ public class ClientesDAO {
     }
 
     public static void atualizarCliente(Clientes cliente) {
+        cliente = ClientesDAO.consultarCliente(cliente.getCpf());
         String sql = "UPDATE CLIENTES SET NOME=?, SENHA=?, SEXO=?, IDADE=?, ENDERECO=?, EMAIL=?, TELEFONE=? WHERE CPF=?";
 
         try (Connection conn = Conexao.getConexao();
@@ -74,7 +75,7 @@ public class ClientesDAO {
             ps.setString(5, cliente.getEndereco());
             ps.setString(6, cliente.getEmail());
             ps.setString(7, cliente.getTelefone());
-            ps.setString(8, cliente.getCpf());
+            ps.setInt(8, cliente.getIdCliente());
             ps.executeUpdate(); // Melhor usar executeUpdate para operações de atualização
 
         } catch (SQLException e) {
@@ -83,12 +84,13 @@ public class ClientesDAO {
     }
 
     public static void deletarCliente(String cpf) {
+        Clientes cliente = ClientesDAO.consultarCliente(cpf);
         String sql = "DELETE FROM CLIENTES WHERE CPF = ?";
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, cpf);
+            ps.setInt(1, cliente.getIdCliente());
             ps.executeUpdate();
 
         } catch (SQLException e) {

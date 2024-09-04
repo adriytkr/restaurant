@@ -4,6 +4,7 @@ public class Bebidas {
     private String nome;
     private String descricao;
     private float valor;
+    private int idBebida;
     
     public Bebidas(String nome, String descricao, float valor) {
         this.nome = nome;
@@ -29,5 +30,12 @@ public class Bebidas {
     }
     public void setValor(float valor) {
         this.valor = valor;
+    }
+    public int getIdBebida() {
+        return idBebida;
+    }
+
+    public void setIdBebida(int idBebida) {
+        this.idBebida = idBebida;
     }
 }
