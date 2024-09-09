@@ -106,9 +106,9 @@ public class BebidasDAO {
         }
     }
 
-    try (Connection conn = Conexao.getConexao(); PreparedStatement checkIngredientes = conn.prepareStatement("SELECT COUNT(*) FROM PEDIDOS WHERE ID_BEBIDA = ?")) {
-        checkIngredientes.setInt(1, bebida.getIdBebida());
-        ResultSet rs = checkIngredientes.executeQuery();
+    try (Connection conn = Conexao.getConexao(); PreparedStatement checkPedidos = conn.prepareStatement("SELECT COUNT(*) FROM PEDIDOS WHERE ID_BEBIDA = ?")) {
+        checkPedidos.setInt(1, bebida.getIdBebida());
+        ResultSet rs = checkPedidos.executeQuery();
         if (rs.next() && rs.getInt(1) > 0) {
             bebida.setDescricao(null);
             bebida.setNome(null);

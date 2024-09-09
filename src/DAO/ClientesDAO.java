@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import src.classes.Clientes;
 import src.conexao.Conexao;
 
@@ -61,9 +62,40 @@ public class ClientesDAO {
         return cliente;
     }
 
+    public static Clientes consultarCliente(Clientes cliente) {
+        String sql = "SELECT * FROM CLIENTES WHERE ID_CLIENTE = ?";
+
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, cliente.getIdCliente());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    cliente = new Clientes(
+                            rs.getString("CPF"),
+                            rs.getString("NOME"),
+                            rs.getString("SENHA"),
+                            rs.getString("SEXO"),
+                            rs.getInt("IDADE"),
+                            rs.getString("ENDERECO"),
+                            rs.getString("EMAIL"),
+                            rs.getString("TELEFONE"));
+                            cliente.setIdCliente(rs.getInt("ID_CLIENTE"));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cliente;
+    }
+
     public static void atualizarCliente(Clientes cliente) {
-        cliente = ClientesDAO.consultarCliente(cliente.getCpf());
-        String sql = "UPDATE CLIENTES SET NOME=?, SENHA=?, SEXO=?, IDADE=?, ENDERECO=?, EMAIL=?, TELEFONE=? WHERE ID_CLIENTE=?";
+        if (cliente.getIdCliente() == 0) {
+            cliente = ClientesDAO.consultarCliente(cliente.getCpf());
+        }
+        String sql = "UPDATE CLIENTES SET NOME=?, SENHA=?, SEXO=?, IDADE=?, ENDERECO=?, EMAIL=?, TELEFONE=?, CPF = ? WHERE ID_CLIENTE=?";
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -75,7 +107,8 @@ public class ClientesDAO {
             ps.setString(5, cliente.getEndereco());
             ps.setString(6, cliente.getEmail());
             ps.setString(7, cliente.getTelefone());
-            ps.setInt(8, cliente.getIdCliente());
+            ps.setString(8, cliente.getCpf());            
+            ps.setInt(9, cliente.getIdCliente());
             ps.executeUpdate(); // Melhor usar executeUpdate para operações de atualização
 
         } catch (SQLException e) {
@@ -83,17 +116,55 @@ public class ClientesDAO {
         }
     }
 
-    public static void deletarCliente(String cpf) {
-        Clientes cliente = ClientesDAO.consultarCliente(cpf);
-        String sql = "DELETE FROM CLIENTES WHERE ID_CLIENTE = ?";
+    // ADICIONAR PARA QUANDO HOUVER RESERVAS E PEDIDOS
+    public static void deletarCliente(Clientes cliente) throws SQLException {
+        if (cliente.getIdCliente() == 0)  {
+            cliente = ClientesDAO.consultarCliente(cliente.getCpf());
+        }
 
-        try (Connection conn = Conexao.getConexao();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+    // Verificar se há registros relacionados na tabela INGREDIENTES e PEDIDOS
+    try (Connection conn = Conexao.getConexao(); PreparedStatement checkReservas = conn.prepareStatement("SELECT COUNT(*) FROM RESERVAS WHERE ID_CLIENTE = ?")) {
+        checkReservas.setInt(1, cliente.getIdCliente());
+        ResultSet rs = checkReservas.executeQuery();
+        if (rs.next() && rs.getInt(1) > 0) {
+            cliente.setCpf(null);
+            cliente.setDataCadastro(null);
+            cliente.setEmail(null);
+            cliente.setEndereco(null);
+            cliente.setIdade(0);
+            cliente.setNome(null);
+            cliente.setSexo(null);
+            cliente.setTelefone(null);
+            cliente.setSenha(null);
+            ClientesDAO.atualizarCliente(cliente);
+            throw new SQLException("Não é possível deletar o cliente porque ela está referenciado em RESERVAS, registros serão atualizados como nulos.");
+        }
+    }
 
-            ps.setInt(1, cliente.getIdCliente());
-            ps.executeUpdate();
+    try (Connection conn = Conexao.getConexao(); PreparedStatement checkPedidos = conn.prepareStatement("SELECT COUNT(*) FROM PEDIDOS WHERE ID_CLIENTE = ?")) {
+        checkPedidos.setInt(1, cliente.getIdCliente());
+        ResultSet rs = checkPedidos.executeQuery();
+        if (rs.next() && rs.getInt(1) > 0) {
+            cliente.setCpf(null);
+            cliente.setDataCadastro(null);
+            cliente.setEmail(null);
+            cliente.setEndereco(null);
+            cliente.setIdade(0);
+            cliente.setNome(null);
+            cliente.setSexo(null);
+            cliente.setTelefone(null);
+            cliente.setSenha(null);
+            ClientesDAO.atualizarCliente(cliente);
+            throw new SQLException("Não é possível deletar o cliente porque ela está referenciado em PEDIDOS, registros serão atualizados como nulos.");
+        }
+    }
 
-        } catch (SQLException e) {
+    // Deletar o cliente se não houver registros relacionados
+    try (Connection conn = Conexao.getConexao(); PreparedStatement deleteCliente = conn.prepareStatement("DELETE FROM CLIENTES WHERE ID_CLIENTE = ?")) {
+        deleteCliente.setInt(1, cliente.getIdCliente());
+        deleteCliente.executeUpdate();
+    }
+    catch (SQLException e) {
             e.printStackTrace();
         }
     }
