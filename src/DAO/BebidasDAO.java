@@ -45,11 +45,34 @@ public class BebidasDAO {
         }
         
         return bebida;
-    }    
+    }   
+
+    public static Bebidas consultarIdBebida(Bebidas bebida) {
+        String sql = "SELECT ID_BEBIDA FROM BEBIDAS WHERE NOME = ?";
+    
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+    
+            ps.setString(1, bebida.getNome());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    bebida.setIdBebida(rs.getInt("ID_BEBIDA"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return bebida;
+    }  
 
     public static void atualizarBebida(Bebidas bebida) {
-        bebida = BebidasDAO.consultarBebida(bebida.getNome());
-        String sql = "UPDATE BEBIDAS SET NOME=?,DESCRICAO=?,VALOR=? WHERE=?";
+        if (bebida.getIdBebida() == 0)  {
+            bebida = BebidasDAO.consultarIdBebida(bebida);
+        }
+        String sql = "UPDATE BEBIDAS SET NOME=?,DESCRICAO=?,VALOR=? WHERE ID_BEBIDA=?";
 
         try (Connection conn = Conexao.getConexao();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -65,17 +88,42 @@ public class BebidasDAO {
         }
     }
 
-    public static void deletarBebida(String nome) {
-        Bebidas bebida = BebidasDAO.consultarBebida(nome);
-        String sql = "DELETE FROM BEBIDAS WHERE ID_BEBIDA = ?";
+    public static void deletarBebida(Bebidas bebida) throws SQLException {
+        if (bebida.getIdBebida() == 0)  {
+            bebida = BebidasDAO.consultarIdBebida(bebida);
+        }
 
-        try (Connection conn = Conexao.getConexao();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
+    // Verificar se há registros relacionados na tabela INGREDIENTES e PEDIDOS
+    try (Connection conn = Conexao.getConexao(); PreparedStatement checkIngredientes = conn.prepareStatement("SELECT COUNT(*) FROM INGREDIENTES WHERE ID_BEBIDA = ?")) {
+        checkIngredientes.setInt(1, bebida.getIdBebida());
+        ResultSet rs = checkIngredientes.executeQuery();
+        if (rs.next() && rs.getInt(1) > 0) {
+            bebida.setDescricao(null);
+            bebida.setNome(null);
+            bebida.setValor(0);
+            BebidasDAO.atualizarBebida(bebida);
+            throw new SQLException("Não é possível deletar a bebida porque ela está referenciada em INGREDIENTES, registros serão atualizados como nulos.");
+        }
+    }
 
-            ps.setInt(1, bebida.getIdBebida());
-            ps.executeUpdate();
+    try (Connection conn = Conexao.getConexao(); PreparedStatement checkIngredientes = conn.prepareStatement("SELECT COUNT(*) FROM PEDIDOS WHERE ID_BEBIDA = ?")) {
+        checkIngredientes.setInt(1, bebida.getIdBebida());
+        ResultSet rs = checkIngredientes.executeQuery();
+        if (rs.next() && rs.getInt(1) > 0) {
+            bebida.setDescricao(null);
+            bebida.setNome(null);
+            bebida.setValor(0);
+            BebidasDAO.atualizarBebida(bebida);
+            throw new SQLException("Não é possível deletar a bebida porque ela está referenciada em PEDIDOS, registros serão atualizados como nulos.");
+        }
+    }
 
-        } catch (SQLException e) {
+    // Deletar a bebida da tabela BEBIDAS se não houver registros relacionados
+    try (Connection conn = Conexao.getConexao(); PreparedStatement deleteBebida = conn.prepareStatement("DELETE FROM BEBIDAS WHERE ID_BEBIDA = ?")) {
+        deleteBebida.setInt(1, bebida.getIdBebida());
+        deleteBebida.executeUpdate();
+    }
+    catch (SQLException e) {
             e.printStackTrace();
         }
     }

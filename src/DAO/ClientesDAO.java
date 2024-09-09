@@ -63,7 +63,7 @@ public class ClientesDAO {
 
     public static void atualizarCliente(Clientes cliente) {
         cliente = ClientesDAO.consultarCliente(cliente.getCpf());
-        String sql = "UPDATE CLIENTES SET NOME=?, SENHA=?, SEXO=?, IDADE=?, ENDERECO=?, EMAIL=?, TELEFONE=? WHERE CPF=?";
+        String sql = "UPDATE CLIENTES SET NOME=?, SENHA=?, SEXO=?, IDADE=?, ENDERECO=?, EMAIL=?, TELEFONE=? WHERE ID_CLIENTE=?";
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class ClientesDAO {
 
     public static void deletarCliente(String cpf) {
         Clientes cliente = ClientesDAO.consultarCliente(cpf);
-        String sql = "DELETE FROM CLIENTES WHERE CPF = ?";
+        String sql = "DELETE FROM CLIENTES WHERE ID_CLIENTE = ?";
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {

@@ -12,6 +12,13 @@ public class Bebidas {
         this.valor = valor;
     }
 
+    public void visualizarBebida(){
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Valor: " + this.valor);
+        System.out.println("Descrição: " + this.descricao);
+        System.out.println("ID_BEBIDA: " + this.idBebida);
+    }
+
     // GETTERS E SETTERS
     public String getNome() {
         return nome;
