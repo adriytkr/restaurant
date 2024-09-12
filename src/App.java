@@ -6,8 +6,10 @@ import src.classes.*;
 public class App {
     public static void main(String[] args) throws SQLException {
 
-        Clientes clienteTeste = ClientesDAO.consultarCliente("12345678901");
-        clienteTeste.visualizandoCliente();
-        ClientesDAO.deletarCliente(clienteTeste);
+        // Entregas entregaTeste = new Entregas("testeeeeeeeee");
+        // entregaTeste.setIdPedido(3);
+        // entregaTeste.visualizarEntrega();
+
+        // EntregasDAO.cadastrarEntrega(entregaTeste);
     }
 }
