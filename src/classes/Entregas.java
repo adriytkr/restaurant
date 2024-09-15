@@ -1,24 +1,14 @@
 package src.classes;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Entregas {
     private String endereco;
     String dataEntrega;
     private int idEntrega;
     private int idPedido;
 
-    public Entregas(String endereco) {
+    public Entregas(String endereco, int idPedido) {
         this.endereco = endereco;
-
-            // Obtém a data e hora atual
-            LocalDateTime now = LocalDateTime.now();
-            // Define um formatador sem frações de segundos
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            // Formata a data e hora
-            String formattedDateTime = now.format(formatter);
-        this.dataEntrega = formattedDateTime;
+        this.idPedido = idPedido;
     }
 
     public void visualizarEntrega(){

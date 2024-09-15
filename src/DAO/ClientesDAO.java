@@ -11,7 +11,7 @@ import src.conexao.Conexao;
 public class ClientesDAO {
 
     public static void cadastrarCliente(Clientes cliente) {
-        String sql = "INSERT INTO CLIENTES (CPF, NOME, SENHA, SEXO, IDADE, ENDERECO, EMAIL, TELEFONE) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO CLIENTES (CPF, NOME, SENHA, SEXO, IDADE, ENDERECO, EMAIL, TELEFONE, DATA_CADASTRO) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = Conexao.getConexao(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -24,6 +24,7 @@ public class ClientesDAO {
             ps.setString(6, cliente.getEndereco());
             ps.setString(7, cliente.getEmail());
             ps.setString(8, cliente.getTelefone());
+            ps.setString(9, cliente.getDataCadastro());
 
             ps.executeUpdate(); // Melhor usar executeUpdate para operações de atualização
 
@@ -52,6 +53,7 @@ public class ClientesDAO {
                             rs.getString("EMAIL"),
                             rs.getString("TELEFONE"));
                             cliente.setIdCliente(rs.getInt("ID_CLIENTE"));
+                            cliente.setDataCadastro(rs.getString("DATA_CADASTRO"));
                 }
             }
 
@@ -60,6 +62,27 @@ public class ClientesDAO {
         }
 
         return cliente;
+    }
+
+    public static int consultarIdCliente(String cpf) {
+        int id = 0;
+        String sql = "SELECT ID_CLIENTE FROM CLIENTES WHERE CPF = ?";
+
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, cpf);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    id = rs.getInt("ID_CLIENTE");
+            }
+        }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 
     public static Clientes consultarCliente(Clientes cliente) {
@@ -81,6 +104,7 @@ public class ClientesDAO {
                             rs.getString("EMAIL"),
                             rs.getString("TELEFONE"));
                             cliente.setIdCliente(rs.getInt("ID_CLIENTE"));
+                            cliente.setDataCadastro(rs.getString("DATA_CADASTRO"));
                 }
             }
 
@@ -93,7 +117,7 @@ public class ClientesDAO {
 
     public static void atualizarCliente(Clientes cliente) {
         if (cliente.getIdCliente() == 0) {
-            cliente = ClientesDAO.consultarCliente(cliente.getCpf());
+            cliente.setIdCliente(ClientesDAO.consultarIdCliente(cliente.getCpf()));;
         }
         String sql = "UPDATE CLIENTES SET NOME=?, SENHA=?, SEXO=?, IDADE=?, ENDERECO=?, EMAIL=?, TELEFONE=?, CPF = ? WHERE ID_CLIENTE=?";
 
@@ -116,7 +140,6 @@ public class ClientesDAO {
         }
     }
 
-    // ADICIONAR PARA QUANDO HOUVER RESERVAS E PEDIDOS
     public static void deletarCliente(Clientes cliente) throws SQLException {
         if (cliente.getIdCliente() == 0)  {
             cliente = ClientesDAO.consultarCliente(cliente.getCpf());

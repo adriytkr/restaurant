@@ -1,4 +1,7 @@
 package src.classes;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Clientes {
     private String cpf;
@@ -7,6 +10,7 @@ public class Clientes {
     private String senha;
     private int idade;
     private int idCliente;
+    private int idFilial;
     private String endereco;
     private String email;
     private String telefone;
@@ -21,6 +25,10 @@ public class Clientes {
         this.endereco = endereco;
         this.email = email;
         this.telefone = telefone;
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+        this.dataCadastro = formattedDateTime;
     }
 
     public void visualizandoCliente(){
@@ -34,6 +42,8 @@ public class Clientes {
         System.out.println("Email: " + this.email);
         System.out.println("Telefone: " + this.telefone);
         System.out.println("Id_cliente: " + this.idCliente);
+        System.out.println("Id_filial: " + this.idFilial);
+        System.out.println("Data de cadastro: " + this.dataCadastro);
         System.out.println("");
     }
     
@@ -101,4 +111,13 @@ public class Clientes {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
+
+    public int getIdFilial() {
+        return idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
+    }
+    
 }
