@@ -47,7 +47,7 @@ public class BebidasDAO {
         return bebida;
     }   
 
-    public static Bebidas consultarIdBebida(Bebidas bebida) {
+    private static Bebidas consultarIdBebida(Bebidas bebida) {
         String sql = "SELECT ID_BEBIDA FROM BEBIDAS WHERE NOME = ?";
     
         try (Connection conn = Conexao.getConexao();

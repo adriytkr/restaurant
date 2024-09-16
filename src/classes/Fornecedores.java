@@ -1,6 +1,7 @@
 package src.classes;
 
 public class Fornecedores {
+    private int idFornecedor;
     private String nome;
     private String cnpj;
     private String tipoMaterial;
@@ -18,6 +19,15 @@ public class Fornecedores {
         this.valorMaterial = valorMaterial;
     }
 
+    public void visualizarFornecedor(){
+        System.out.println("ID_FORNECEDOR: : " + this.idFornecedor);
+        System.out.println("NOME: : " + this.nome);
+        System.out.println("CNPJ: " + this.cnpj);
+        System.out.println("TIPO_MATERIAL: " + this.tipoMaterial);
+        System.out.println("EMAIL: : " + this.email);
+        System.out.println("TELEFONE: : " + this.telefone);
+        System.out.println("VALOR_MATERIAL: " + this.valorMaterial);
+    }
     
     // GETTERS E SETTERS
     public String getNome() {
@@ -56,4 +66,16 @@ public class Fornecedores {
     public void setValorMaterial(float valorMaterial) {
         this.valorMaterial = valorMaterial;
     }
+
+
+    public int getIdFornecedor() {
+        return idFornecedor;
+    }
+
+
+    public void setIdFornecedor(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+
+    
 }

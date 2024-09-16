@@ -13,6 +13,7 @@ public class Bebidas {
     }
 
     public void visualizarBebida(){
+        System.out.println("BEBIDA:");
         System.out.println("Nome: " + this.nome);
         System.out.println("Valor: " + this.valor);
         System.out.println("Descrição: " + this.descricao);

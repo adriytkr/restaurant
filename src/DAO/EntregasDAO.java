@@ -48,7 +48,7 @@ public class EntregasDAO {
         return entrega;
     }
 
-    public static Entregas consultarIdEntrega(Entregas entrega) {
+    private static Entregas consultarIdEntrega(Entregas entrega) {
         String sql = "SELECT ID_ENTREGA FROM ENTREGAS WHERE ID_PEDIDO = ?";
 
         try (Connection conn = Conexao.getConexao();

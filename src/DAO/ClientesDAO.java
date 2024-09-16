@@ -64,7 +64,7 @@ public class ClientesDAO {
         return cliente;
     }
 
-    public static int consultarIdCliente(String cpf) {
+    private static int consultarIdCliente(String cpf) {
         int id = 0;
         String sql = "SELECT ID_CLIENTE FROM CLIENTES WHERE CPF = ?";
 
@@ -86,6 +86,9 @@ public class ClientesDAO {
     }
 
     public static Clientes consultarCliente(Clientes cliente) {
+        if (cliente.getIdCliente() == 0) {
+            cliente.setIdCliente(ClientesDAO.consultarIdCliente(cliente.getCpf()));;
+        }
         String sql = "SELECT * FROM CLIENTES WHERE ID_CLIENTE = ?";
 
         try (Connection conn = Conexao.getConexao();
@@ -103,7 +106,6 @@ public class ClientesDAO {
                             rs.getString("ENDERECO"),
                             rs.getString("EMAIL"),
                             rs.getString("TELEFONE"));
-                            cliente.setIdCliente(rs.getInt("ID_CLIENTE"));
                             cliente.setDataCadastro(rs.getString("DATA_CADASTRO"));
                 }
             }

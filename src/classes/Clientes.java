@@ -31,8 +31,8 @@ public class Clientes {
         this.dataCadastro = formattedDateTime;
     }
 
-    public void visualizandoCliente(){
-        System.out.println("");
+    public void visualizarCliente(){
+        System.out.println("CLIENTE:");
         System.out.println("Nome: " + this.nome);
         System.out.println("Senha: " + this.senha);
         System.out.println("CPF: " + this.cpf);
