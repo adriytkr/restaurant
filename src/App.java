@@ -7,8 +7,10 @@ import src.classes.*;
 public class App {
     public static void main(String[] args) throws SQLException {
 
-        Funcionarios f1 = new Funcionarios("11122334455", null, null, null, 0, null, null, null, null);
-        f1 = FuncionariosDAO.consultarFuncionarios(f1);
-        FuncionariosDAO.deletarFuncionario(f1);
+        Ingredientes ingredienteTeste = new Ingredientes("Leite", "Kg");
+        ingredienteTeste.setIdIngrediente(2);
+        IngredientesDAO.deletarIngrediente(ingredienteTeste);
+        ingredienteTeste.visualizarIngrediente();
+
     }
 }

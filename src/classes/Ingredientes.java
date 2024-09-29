@@ -1,12 +1,19 @@
 package src.classes;
 
 public class Ingredientes {
+    private int idIngrediente;
     private String nome;
     private String unidadeDeMedida;
 
     public Ingredientes(String nome, String unidadeDeMedida) {
         this.nome = nome;
         this.unidadeDeMedida = unidadeDeMedida;
+    }
+
+    public void visualizarIngrediente(){
+        System.out.println("ID_INGREDIENTE: " + this.getIdIngrediente());
+        System.out.println("NOME: " + this.getNome());
+        System.out.println("UNIDADE_MEDIDA: " + this.getUnidadeDeMedida());
     }
 
     // GETTERS E SETTERS
@@ -21,5 +28,13 @@ public class Ingredientes {
     }
     public void setUnidadeDeMedida(String unidadeDeMedida) {
         this.unidadeDeMedida = unidadeDeMedida;
+    }
+
+    public int getIdIngrediente() {
+        return idIngrediente;
+    }
+
+    public void setIdIngrediente(int idIngrediente) {
+        this.idIngrediente = idIngrediente;
     }
 }
