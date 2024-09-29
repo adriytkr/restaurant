@@ -61,6 +61,7 @@ public class FornecedoresDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     fornecedor.setNome(rs.getString("NOME"));
+                    fornecedor.setCnpj(rs.getString("CNPJ"));
                     fornecedor.setTipoMaterial(rs.getString("TIPO_MATERIAL"));
                     fornecedor.setEmail(rs.getString("EMAIL"));
                     fornecedor.setTelefone(rs.getString("TELEFONE"));
