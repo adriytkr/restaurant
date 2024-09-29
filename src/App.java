@@ -1,4 +1,5 @@
 package src;
+
 import java.sql.SQLException;
 import src.DAO.*;
 import src.classes.*;
@@ -6,9 +7,8 @@ import src.classes.*;
 public class App {
     public static void main(String[] args) throws SQLException {
 
-        Fornecedores f1 = new Fornecedores(null, null, null, null, null, 0);
-        f1.setIdFornecedor(1);
-        FornecedoresDAO.consultarFornecedor(f1);
-        f1.visualizarFornecedor();
+        Funcionarios f1 = new Funcionarios("11122334455", null, null, null, 0, null, null, null, null);
+        f1 = FuncionariosDAO.consultarFuncionarios(f1);
+        FuncionariosDAO.deletarFuncionario(f1);
     }
 }

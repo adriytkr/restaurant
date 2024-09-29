@@ -105,7 +105,9 @@ public class FornecedoresDAO {
             fornecedor.setIdFornecedor(FornecedoresDAO.consultarIdFornecedor(fornecedor.getCnpj()));
         }
 
-        try (Connection conn = Conexao.getConexao(); PreparedStatement checkEstoque = conn.prepareStatement("SELECT COUNT(*) FROM ESTOQUE WHERE ID_FORNECEDOR = ?")) {
+        try (Connection conn = Conexao.getConexao();
+                PreparedStatement checkEstoque = conn
+                        .prepareStatement("SELECT COUNT(*) FROM ESTOQUE WHERE ID_FORNECEDOR = ?")) {
             checkEstoque.setInt(1, fornecedor.getIdFornecedor());
             ResultSet rs = checkEstoque.executeQuery();
             if (rs.next() && rs.getInt(1) > 0) {
@@ -116,7 +118,8 @@ public class FornecedoresDAO {
                 fornecedor.setTipoMaterial(null);
                 fornecedor.setValorMaterial(0);
                 FornecedoresDAO.atualizarFornecedor(fornecedor);
-                throw new SQLException("Não é possível deletar o fornecedor porque ela está referenciado em ESTOQUE, registros serão atualizados como nulos.");
+                throw new SQLException(
+                        "Não é possível deletar o fornecedor porque ela está referenciado em ESTOQUE, registros serão atualizados como nulos.");
             }
         }
 
