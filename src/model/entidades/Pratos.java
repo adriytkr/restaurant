@@ -4,11 +4,19 @@ public class Pratos {
     private String nome;
     private String descricao;
     private float valor;
+    private int idPrato;
     
     public Pratos(String nome, String descricao, float valor) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
+    }
+
+    public void visualizarPrato(){
+        System.out.println("ID_PRATO: " + this.idPrato);
+        System.out.println("NOME: " + this.nome);
+        System.out.println("DESCRIÇÃO: " + this.descricao);
+        System.out.println("VALOR: " + this.valor);
     }
 
     // GETTERS E SETTERS
@@ -29,5 +37,13 @@ public class Pratos {
     }
     public void setValor(float valor) {
         this.valor = valor;
+    }
+
+    public int getIdPrato() {
+        return idPrato;
+    }
+
+    public void setIdPrato(int idPrato) {
+        this.idPrato = idPrato;
     }
 }

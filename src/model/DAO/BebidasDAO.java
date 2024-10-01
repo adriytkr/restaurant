@@ -95,22 +95,6 @@ public class BebidasDAO {
             bebida = BebidasDAO.consultarIdBebida(bebida);
         }
 
-        // Verificar se há registros relacionados na tabela INGREDIENTES e PEDIDOS
-        try (Connection conn = Conexao.getConexao();
-                PreparedStatement checkIngredientes = conn
-                        .prepareStatement("SELECT COUNT(*) FROM INGREDIENTES WHERE ID_BEBIDA = ?")) {
-            checkIngredientes.setInt(1, bebida.getIdBebida());
-            ResultSet rs = checkIngredientes.executeQuery();
-            if (rs.next() && rs.getInt(1) > 0) {
-                bebida.setDescricao(null);
-                bebida.setNome(null);
-                bebida.setValor(0);
-                BebidasDAO.atualizarBebida(bebida);
-                throw new SQLException(
-                        "Não é possível deletar a bebida porque ela está referenciada em INGREDIENTES, registros serão atualizados como nulos.");
-            }
-        }
-
         try (Connection conn = Conexao.getConexao();
                 PreparedStatement checkPedidos = conn
                         .prepareStatement("SELECT COUNT(*) FROM PEDIDOS WHERE ID_BEBIDA = ?")) {
