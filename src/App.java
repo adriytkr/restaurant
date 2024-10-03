@@ -7,8 +7,8 @@ import src.model.entidades.*;
 
 public class App {
     public static void main(String[] args) throws SQLException {
-        Reservas reservaTeste = new Reservas("Mesa 1",1,1,1);
-        reservaTeste.setDataReserva("2024-10-02 09:12:04");
-        ReservasDAO.deletarReserva(reservaTeste);
+        Funcionarios funcionario = new Funcionarios("00011223344", null, null, null, 0, null, null, null, null);
+        FuncionariosDAO.consultarFuncionarios(funcionario);
+        funcionario.visualizarFuncionario();
     }
 }

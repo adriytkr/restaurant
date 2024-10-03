@@ -36,7 +36,7 @@ public class FuncionariosDAO {
     }
 
     public static Funcionarios consultarFuncionarios(String cpf) throws SQLException {
-        Funcionarios funcionario = null;
+        Funcionarios funcionario = new Funcionarios(null, null, null, null, 0, null, null, null, null);
         String sql = "SELECT * FROM FUNCIONARIOS WHERE CPF = ?";
 
         try (Connection conn = Conexao.getConexao();
@@ -45,18 +45,17 @@ public class FuncionariosDAO {
             ps.setString(1, cpf);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    funcionario = new Funcionarios(cpf,
-                            rs.getString("NOME"),
-                            rs.getString("SENHA"),
-                            rs.getString("SEXO"),
-                            rs.getInt("IDADE"),
-                            rs.getString("ENDERECO"),
-                            rs.getString("EMAIL"),
-                            rs.getString("TELEFONE"),
-                            rs.getString("CARGO"));
+                    funcionario.setCargo(rs.getString("CARGO"));
+                    funcionario.setCpf(rs.getString("CPF"));
                     funcionario.setDataContratacao(rs.getString("DATA_CONTRATACAO"));
-                    funcionario.setIdFuncionario(rs.getInt("ID_FUNC"));
+                    funcionario.setEmail(rs.getString("EMAIL"));
+                    funcionario.setEndereco(rs.getString("ENDERECO"));
                     funcionario.setIdFilial(rs.getInt("ID_FILIAL"));
+                    funcionario.setIdade(rs.getInt("IDADE"));
+                    funcionario.setNome(rs.getString("NOME"));
+                    funcionario.setSenha(rs.getString("SENHA"));
+                    funcionario.setSexo(rs.getString("SEXO"));
+                    funcionario.setTelefone(rs.getString("TELEFONE"));
                 }
 
             } catch (SQLException e) {

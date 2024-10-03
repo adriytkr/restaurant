@@ -34,7 +34,7 @@ public class ClientesDAO {
     }
 
     public static Clientes consultarCliente(String cpf) {
-        Clientes cliente = null;
+        Clientes cliente = new Clientes(null, null, null, null, 0, null, null, null);
         String sql = "SELECT * FROM CLIENTES WHERE CPF = ?";
 
         try (Connection conn = Conexao.getConexao();
@@ -43,16 +43,16 @@ public class ClientesDAO {
             ps.setString(1, cpf);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    cliente = new Clientes(
-                            rs.getString("CPF"),
-                            rs.getString("NOME"),
-                            rs.getString("SENHA"),
-                            rs.getString("SEXO"),
-                            rs.getInt("IDADE"),
-                            rs.getString("ENDERECO"),
-                            rs.getString("EMAIL"),
-                            rs.getString("TELEFONE"));
+                    cliente.setCpf(rs.getString("CPF"));
+                    cliente.setNome(rs.getString("NOME"));
+                    cliente.setSenha(rs.getString("SENHA"));
+                    cliente.setSexo(rs.getString("SEXO"));
+                    cliente.setIdade(rs.getInt("IDADE"));
+                    cliente.setEndereco(rs.getString("ENDERECO"));
+                    cliente.setEmail(rs.getString("EMAIL"));
+                    cliente.setTelefone(rs.getString("TELEFONE"));
                     cliente.setIdCliente(rs.getInt("ID_CLIENTE"));
+                    cliente.setIdFilial(rs.getInt("ID_FILIAL"));
                     cliente.setDataCadastro(rs.getString("DATA_CADASTRO"));
                 }
             }
@@ -98,15 +98,16 @@ public class ClientesDAO {
             ps.setInt(1, cliente.getIdCliente());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    cliente = new Clientes(
-                            rs.getString("CPF"),
-                            rs.getString("NOME"),
-                            rs.getString("SENHA"),
-                            rs.getString("SEXO"),
-                            rs.getInt("IDADE"),
-                            rs.getString("ENDERECO"),
-                            rs.getString("EMAIL"),
-                            rs.getString("TELEFONE"));
+                    cliente.setCpf(rs.getString("CPF"));
+                    cliente.setNome(rs.getString("NOME"));
+                    cliente.setSenha(rs.getString("SENHA"));
+                    cliente.setSexo(rs.getString("SEXO"));
+                    cliente.setIdade(rs.getInt("IDADE"));
+                    cliente.setEndereco(rs.getString("ENDERECO"));
+                    cliente.setEmail(rs.getString("EMAIL"));
+                    cliente.setTelefone(rs.getString("TELEFONE")); 
+                    cliente.setIdCliente(rs.getInt("ID_CLIENTE")); 
+                    cliente.setIdFilial(rs.getInt("ID_FILIAL")); 
                     cliente.setDataCadastro(rs.getString("DATA_CADASTRO"));
                 }
             }

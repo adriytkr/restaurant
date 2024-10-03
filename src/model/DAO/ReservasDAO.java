@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import src.model.entidades.Pedidos;
 import src.model.entidades.Reservas;
 import src.util.Conexao;
 
