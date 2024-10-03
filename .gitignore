@@ -1,2 +1,1 @@
-# Ignorar a pasta bin, que contém arquivos compilados
-src/bin/
+*.class
