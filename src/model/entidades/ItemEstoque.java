@@ -16,11 +16,14 @@ public class ItemEstoque {
     }
 
     public void visualizarItem(){
-        System.out.println("Quantidade:" + this.quantidade);
-        System.out.println("Quantidade Mínima:" + this.quantidadeMinima);
-        System.out.println("ID_INGREDIENTE:" + this.idIngrediente);
+        System.out.println("");
+        System.out.println("***ITEM DO ESTOQUE***"); 
+        System.out.println("ID_INGREDIENTE:" + this.idIngrediente); 
+        System.out.println("QUANTIDADE:" + this.quantidade); 
+        System.out.println("QUANTIDADE_MINIMA:" + this.quantidadeMinima);
         System.out.println("ID_FORNECEDOR:" + this.idFornecedor);
         System.out.println("ID_FILIAL:" + this.idFilial);
+        System.out.println("");
     }
 
     // GETTERS E SETTERS

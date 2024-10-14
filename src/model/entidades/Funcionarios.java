@@ -36,6 +36,8 @@ public class Funcionarios {
     }
 
     public void visualizarFuncionario() {
+        System.out.println("");
+        System.out.println("***FUNCIONARIO***");
         System.out.println("ID_FUNC: " + this.getIdFuncionario());
         System.out.println("CPF: " + this.getCpf());
         System.out.println("SENHA: " + this.getSenha());
@@ -48,6 +50,7 @@ public class Funcionarios {
         System.out.println("ID_FILIAL: " + this.getIdFilial());
         System.out.println("CARGO: " + this.getCargo());
         System.out.println("DATA_CONTRATACAO: " + this.getDataContratacao());
+        System.out.println("");
     }
 
     // GETTERS E SETTERS

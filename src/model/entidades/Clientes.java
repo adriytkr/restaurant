@@ -33,18 +33,19 @@ public class Clientes {
     }
 
     public void visualizarCliente() {
-        System.out.println("CLIENTE:");
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Senha: " + this.senha);
+        System.out.println("");
+        System.out.println("***CLIENTE***");
+        System.out.println("NOME: " + this.nome);
+        System.out.println("SENHA: " + this.senha);
         System.out.println("CPF: " + this.cpf);
-        System.out.println("Sexo: " + this.sexo);
-        System.out.println("Idade: " + this.idade);
-        System.out.println("Endereço: " + this.endereco);
-        System.out.println("Email: " + this.email);
-        System.out.println("Telefone: " + this.telefone);
-        System.out.println("Id_cliente: " + this.idCliente);
-        System.out.println("Id_filial: " + this.idFilial);
-        System.out.println("Data de cadastro: " + this.dataCadastro);
+        System.out.println("SEXO: " + this.sexo);
+        System.out.println("IDADE: " + this.idade);
+        System.out.println("ENDERECO: " + this.endereco);
+        System.out.println("EMAIL: " + this.email);
+        System.out.println("TELEFONE: " + this.telefone);
+        System.out.println("ID_CLIENTE: " + this.idCliente);
+        System.out.println("ID_FILIAL: " + this.idFilial);
+        System.out.println("DATA_CADASTRO: " + this.dataCadastro);
         System.out.println("");
     }
 

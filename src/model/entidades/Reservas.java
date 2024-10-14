@@ -22,12 +22,15 @@ public class Reservas {
     }
 
     public void visualizarReserva(){
+        System.out.println("");
+        System.out.println("***RESERVA***");
         System.out.println("ID_RESERVA: " + this.idReserva);
         System.out.println("ID_FILIAL: " + this.idFilial);
         System.out.println("ID_CLIENTE: " + this.idCliente);
         System.out.println("DATA_RESERVA: " + this.dataReserva);
         System.out.println("MESA: " + this.mesa);
         System.out.println("CAPACIDADE: " + this.capacidade);
+        System.out.println("");
     }
     
     // GETTERS E SETTERS

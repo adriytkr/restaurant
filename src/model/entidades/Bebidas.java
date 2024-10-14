@@ -13,11 +13,13 @@ public class Bebidas {
     }
 
     public void visualizarBebida(){
-        System.out.println("BEBIDA:");
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Valor: " + this.valor);
-        System.out.println("Descrição: " + this.descricao);
+        System.out.println("");
+        System.out.println("***BEBIDA***");
+        System.out.println("NOME: " + this.nome);
+        System.out.println("VALOR: " + this.valor);
+        System.out.println("DESCRICAO: " + this.descricao);
         System.out.println("ID_BEBIDA: " + this.idBebida);
+        System.out.println("");
     }
 
     // GETTERS E SETTERS

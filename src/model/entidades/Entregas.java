@@ -12,11 +12,13 @@ public class Entregas {
     }
 
     public void visualizarEntrega(){
-        System.out.println("ENTREGA: ");
-        System.out.println("Endereço: " + this.endereco);
-        System.out.println("Data de entrega:" + this.dataEntrega);
+        System.out.println("");
+        System.out.println("***ENTREGA***");
+        System.out.println("ENDERECO: " + this.endereco);
+        System.out.println("DATA_ENTREGA:" + this.dataEntrega);
         System.out.println("ID_ENTREGA: " + this.idEntrega);
         System.out.println("ID_PEDIDO: " + this.idPedido);
+        System.out.println("");
     }
     
     // GETTERS E SETTERS

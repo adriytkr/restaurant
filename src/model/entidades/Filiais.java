@@ -17,12 +17,15 @@ public class Filiais {
     }
 
     public void visualizarFilial(){
+        System.out.println("");
+        System.out.println("***FILIAL***");
         System.out.println("ID_FILIAL: " + this.idFilial);
-        System.out.println("Endereço: " + this.endereco);
-        System.out.println("Email: " + this.email);
-        System.out.println("Telefone: " + this.telefone);
-        System.out.println("Quant_mesas: " + this.quantidadeMesas);
-        System.out.println("Avaliação: " + this.avaliacao);
+        System.out.println("ENDERECO: " + this.endereco);
+        System.out.println("EMAIL: " + this.email);
+        System.out.println("TELEFONE: " + this.telefone);
+        System.out.println("QUANT_MESAS: " + this.quantidadeMesas);
+        System.out.println("AVALIACAO: " + this.avaliacao);
+        System.out.println("");
     }
 
     // GETTERS E SETTERS

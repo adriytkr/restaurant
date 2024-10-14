@@ -20,6 +20,8 @@ public class Fornecedores {
     }
 
     public void visualizarFornecedor(){
+        System.out.println("");
+        System.out.println("***FORNECEDOR***");
         System.out.println("ID_FORNECEDOR: : " + this.idFornecedor);
         System.out.println("NOME: : " + this.nome);
         System.out.println("CNPJ: " + this.cnpj);
@@ -27,6 +29,7 @@ public class Fornecedores {
         System.out.println("EMAIL: : " + this.email);
         System.out.println("TELEFONE: : " + this.telefone);
         System.out.println("VALOR_MATERIAL: " + this.valorMaterial);
+        System.out.println("");
     }
     
     // GETTERS E SETTERS

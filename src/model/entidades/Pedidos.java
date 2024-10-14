@@ -31,6 +31,8 @@ public class Pedidos {
     }
 
     public void visualizarPedidos() {
+        System.out.println("");
+        System.out.println("***PEDIDO***");
         System.out.println("ID_PEDIDO: " + this.getIdPedido());
         System.out.println("ID_CLIENTE: " + this.getIdCliente());
         System.out.println("ID_PRATO: " + this.getIdPrato());
@@ -40,6 +42,7 @@ public class Pedidos {
         System.out.println("ENDERECO: " + this.getEndereco());
         System.out.println("DATA_PEDIDO: " + this.getDataPedido());
         System.out.println("STATUS: " + this.getStatus());
+        System.out.println("");
     }
 
     // GETTERS E SETTERS

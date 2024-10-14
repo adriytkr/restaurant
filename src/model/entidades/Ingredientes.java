@@ -11,9 +11,12 @@ public class Ingredientes {
     }
 
     public void visualizarIngrediente(){
+        System.out.println("");
+        System.out.println("***INGREDIENTE***");
         System.out.println("ID_INGREDIENTE: " + this.getIdIngrediente());
         System.out.println("NOME: " + this.getNome());
         System.out.println("UNIDADE_MEDIDA: " + this.getUnidadeDeMedida());
+        System.out.println("");
     }
 
     // GETTERS E SETTERS
