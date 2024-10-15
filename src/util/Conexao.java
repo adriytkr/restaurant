@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/RESTAURANTE";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String url = "jdbc:mysql://localhost:3306/RESTAURANTE";
+    private static final String usuario = "root";
+    private static final String senha = "";
 
     private static Connection conn;
 
@@ -16,7 +16,7 @@ public class Conexao {
     public static synchronized Connection getConexao() {
         try {
             if (conn == null || conn.isClosed()) {
-                conn = DriverManager.getConnection(URL, USUARIO, SENHA);
+                conn = DriverManager.getConnection(url, usuario, senha);
             }
         } catch (SQLException e) {
             e.printStackTrace();
