@@ -14,15 +14,13 @@ public class BebidasDAO {
         Connection conn = null;
         try {
             conn = Conexao.getConexao(); // Obter a conexão
-            if (conn == null) {
-                throw new SQLException("Falha ao estabelecer conexão com o banco de dados.");
-            }
             conn.setAutoCommit(false); // Desabilitar commit automático
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
                 ps.setString(1, bebida.getNome());
                 ps.setString(2, bebida.getDescricao());
                 ps.setFloat(3, bebida.getValor());
+
                 ps.executeUpdate(); // Melhor usar executeUpdate para operações de atualização
             }
             conn.commit(); // Realizar o commit das operações
@@ -34,7 +32,8 @@ public class BebidasDAO {
                     rollbackEx.printStackTrace();
                 }
             }
-            e.printStackTrace();
+            System.err.println("Erro ao cadastrar a bebida: " + e.getMessage());
+
         } finally {
             if (conn != null) {
                 try {
@@ -163,19 +162,13 @@ public class BebidasDAO {
     }
 
     // MÉTODOS PARA O DELETE
-    public static void atualizarBebidaNula(Bebidas bebida, Connection conn) {
-        if (bebida.getIdBebida() == 0) {
-            bebida = BebidasDAO.consultarIdBebida(bebida);
-            // Verifique se a bebida foi encontrada
-        }
+    private static void atualizarBebidaNula(Bebidas bebida, Connection conn) {
 
         String sql = "UPDATE BEBIDAS SET NOME=?, DESCRICAO=?, VALOR=? WHERE ID_BEBIDA=?";
         try {
             if (conn == null) {
                 throw new SQLException("Falha ao estabelecer conexão com o banco de dados.");
             }
-            conn.setAutoCommit(false); // Desabilitar commit automático
-
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setString(1, bebida.getNome());
                 ps.setString(2, bebida.getDescricao());
@@ -193,7 +186,7 @@ public class BebidasDAO {
                     rollbackEx.printStackTrace();
                 }
             }
-            e.printStackTrace();
+            System.err.println("Erro ao deletar bebida: " + e.getMessage());
         } finally {
             if (conn != null) {
                 try {
