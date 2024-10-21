@@ -4,26 +4,48 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import src.model.entidades.ItemEstoque;
 import src.util.Conexao;
 
 public class EstoqueDAO {
 
     public static void cadastrarItem(ItemEstoque itemEstoque) {
+        Connection conn = null;
         String sql = "INSERT INTO ESTOQUE (ID_INGREDIENTE,ID_FORNECEDOR,QUANTIDADE,QUANTIDADE_MINIMA,ID_FILIAL) VALUES (?,?,?,?,?)";
 
-        try (Connection conn = Conexao.getConexao();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, itemEstoque.getidIngrediente());
-            ps.setInt(2, itemEstoque.getIdFornecedor());
-            ps.setInt(3, itemEstoque.getQuantidade());
-            ps.setInt(4, itemEstoque.getQuantidadeMinima());
-            ps.setInt(5, itemEstoque.getIdFilial());
-            ps.executeUpdate();
+        try {
+            conn = Conexao.getConexao(); // Obter a conexão
+            conn.setAutoCommit(false); // Desabilitar commit automático
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
+                ps.setInt(1, itemEstoque.getidIngrediente());
+                ps.setInt(2, itemEstoque.getIdFornecedor());
+                ps.setInt(3, itemEstoque.getQuantidade());
+                ps.setInt(4, itemEstoque.getQuantidadeMinima());
+                ps.setInt(5, itemEstoque.getIdFilial());
+                ps.executeUpdate();
+
+            }
+            conn.commit(); // Realizar o commit das operações
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Desfazer as operações em caso de erro
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            System.err.println("Erro ao cadastrar item: " + e.getMessage());
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restaurar o auto commit
+                    conn.close(); // Fechar a conexão manualmente
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
         }
     }
 
@@ -54,18 +76,77 @@ public class EstoqueDAO {
     }
 
     public static void atualizarItem(ItemEstoque item) {
+        Connection conn = null;
         String sql = "UPDATE ESTOQUE SET QUANTIDADE = ?, QUANTIDADE_MINIMA = ?, ID_FORNECEDOR = ? WHERE ID_INGREDIENTE = ? AND ID_FILIAL = ?";
-        try (Connection conn = Conexao.getConexao();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, item.getQuantidade());
-            ps.setInt(2, item.getQuantidadeMinima());
-            ps.setInt(3, item.getIdFornecedor());
-            ps.setInt(4, item.getidIngrediente());
-            ps.setInt(5, item.getIdFilial());
-            ps.executeUpdate();
 
+        try {
+            conn = Conexao.getConexao(); // Obter a conexão
+            conn.setAutoCommit(false); // Desabilitar commit automático
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+                ps.setInt(1, item.getQuantidade());
+                ps.setInt(2, item.getQuantidadeMinima());
+                ps.setInt(3, item.getIdFornecedor());
+                ps.setInt(4, item.getidIngrediente());
+                ps.setInt(5, item.getIdFilial());
+                ps.executeUpdate();
+
+            }
+            conn.commit(); // Realizar o commit das operações
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Desfazer as operações em caso de erro
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            System.err.println("Erro ao atualizar item: " + e.getMessage());
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restaurar o auto commit
+                    conn.close(); // Fechar a conexão manualmente
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void deletarItem(ItemEstoque item){
+        Connection conn = null;
+        String sql = "UPDATE ESTOQUE SET QUANTIDADE = 0, QUANTIDADE_MINIMA = 0, ID_FORNECEDOR = 1, ID_INGREDIENTE = 1, ID_FILIAL = 1 WHERE ID_INGREDIENTE = ? AND ID_FILIAL = ?";
+
+        try {
+            conn = Conexao.getConexao(); // Obter a conexão
+            conn.setAutoCommit(false); // Desabilitar commit automático
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, item.getidIngrediente());
+                ps.setInt(2, item.getIdFilial());
+                ps.executeUpdate();
+            }
+            conn.commit(); // Realizar o commit das operações
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Desfazer as operações em caso de erro
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            System.err.println("Erro ao deletar item: " + e.getMessage());
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restaurar o auto commit
+                    conn.close(); // Fechar a conexão manualmente
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
         }
     }
 }
