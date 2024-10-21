@@ -11,19 +11,41 @@ import src.util.Conexao;
 public class FiliaisDAO {
 
     public static void cadastrarFilial(Filiais filial) {
-        String sql = "INSERT INTO FILIAIS (ENDERECO,EMAIL,TELEFONE,QUANT_MESAS,AVALIACAO) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO FILIAIS (ENDERECO,EMAIL,TELEFONE,QUANTIDADE_MESAS,AVALIACAO) VALUES (?,?,?,?,?)";
+        Connection conn = null;
+        try {
+            conn = Conexao.getConexao(); // Obter a conexão
+            conn.setAutoCommit(false); // Desabilitar commit automático
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        try (Connection conn = Conexao.getConexao();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, filial.getEndereco());
-            ps.setString(2, filial.getEmail());
-            ps.setString(3, filial.getTelefone());
-            ps.setInt(4, filial.getQuantidadeMesas());
-            ps.setFloat(5, filial.getAvaliacao());
-            ps.executeUpdate();
+                ps.setString(1, filial.getEndereco());
+                ps.setString(2, filial.getEmail());
+                ps.setString(3, filial.getTelefone());
+                ps.setInt(4, filial.getQuantidadeMesas());
+                ps.setFloat(5, filial.getAvaliacao());
+                ps.executeUpdate();
 
+            }
+            conn.commit(); // Realizar o commit das operações
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Desfazer as operações em caso de erro
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            System.err.println("Erro ao cadastrar item: " + e.getMessage());
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restaurar o auto commit
+                    conn.close(); // Fechar a conexão manualmente
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
         }
     }
 
@@ -63,7 +85,7 @@ public class FiliaisDAO {
                 if (rs.next()) {
                     filial.setAvaliacao(rs.getFloat("AVALIACAO"));
                     filial.setEmail(rs.getString("EMAIL"));
-                    filial.setQuantidadeMesas(rs.getInt("QUANT_MESAS"));
+                    filial.setQuantidadeMesas(rs.getInt("QUANTIDADE_MESAS"));
                     filial.setTelefone(rs.getString("TELEFONE"));
                 }
             }
@@ -81,21 +103,43 @@ public class FiliaisDAO {
             filial.setIdFilial(FiliaisDAO.consultarIdFilial(filial.getEndereco()));
         }
 
-        String sql = "UPDATE FILIAIS SET ENDERECO = ?, EMAIL = ?, TELEFONE = ?, QUANT_MESAS = ?, AVALIACAO = ? WHERE ID_FILIAL = ?";
+        String sql = "UPDATE FILIAIS SET ENDERECO = ?, EMAIL = ?, TELEFONE = ?, QUANTIDADE_MESAS = ?, AVALIACAO = ? WHERE ID_FILIAL = ?";
+        Connection conn = null;
 
-        try (Connection conn = Conexao.getConexao();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
+        try {
+            conn = Conexao.getConexao(); // Obter a conexão
+            conn.setAutoCommit(false); // Desabilitar commit automático
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, filial.getEndereco());
-            ps.setString(2, filial.getEmail());
-            ps.setString(3, filial.getTelefone());
-            ps.setInt(4, filial.getQuantidadeMesas());
-            ps.setFloat(5, filial.getAvaliacao());
-            ps.setInt(6, filial.getIdFilial());
-            ps.executeUpdate();
+                ps.setString(1, filial.getEndereco());
+                ps.setString(2, filial.getEmail());
+                ps.setString(3, filial.getTelefone());
+                ps.setInt(4, filial.getQuantidadeMesas());
+                ps.setFloat(5, filial.getAvaliacao());
+                ps.setInt(6, filial.getIdFilial());
+                ps.executeUpdate();
 
+            }
+            conn.commit(); // Realizar o commit das operações
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Desfazer as operações em caso de erro
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            System.err.println("Erro ao cadastrar item: " + e.getMessage());
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restaurar o auto commit
+                    conn.close(); // Fechar a conexão manualmente
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
         }
     }
 
@@ -106,14 +150,38 @@ public class FiliaisDAO {
         }
 
         String sql = "DELETE FROM FILIAIS WHERE ID_FILIAL = ?";
+        Connection conn = null;
 
-        try (Connection conn = Conexao.getConexao();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, filial.getIdFilial());
-            ps.executeUpdate();
+        try {
+            conn = Conexao.getConexao(); // Obter a conexão
+            conn.setAutoCommit(false); // Desabilitar commit automático
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
+                ps.setInt(1, filial.getIdFilial());
+                ps.executeUpdate();
+
+            }
+            
+            conn.commit(); // Realizar o commit das operações
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Desfazer as operações em caso de erro
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            System.err.println("Erro ao cadastrar item: " + e.getMessage());
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restaurar o auto commit
+                    conn.close(); // Fechar a conexão manualmente
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
         }
     }
 }

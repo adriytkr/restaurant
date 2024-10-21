@@ -23,7 +23,7 @@ public class Filiais {
         System.out.println("ENDERECO: " + this.endereco);
         System.out.println("EMAIL: " + this.email);
         System.out.println("TELEFONE: " + this.telefone);
-        System.out.println("QUANT_MESAS: " + this.quantidadeMesas);
+        System.out.println("QUANTIDADE_MESAS: " + this.quantidadeMesas);
         System.out.println("AVALIACAO: " + this.avaliacao);
         System.out.println("");
     }
