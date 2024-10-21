@@ -35,7 +35,7 @@ public class FiliaisDAO {
                     rollbackEx.printStackTrace();
                 }
             }
-            System.err.println("Erro ao cadastrar item: " + e.getMessage());
+            System.err.println("Erro ao cadastrar filial: " + e.getMessage());
 
         } finally {
             if (conn != null) {
@@ -161,7 +161,7 @@ public class FiliaisDAO {
                 ps.executeUpdate();
 
             }
-            
+
             conn.commit(); // Realizar o commit das operações
         } catch (SQLException e) {
             if (conn != null) {
