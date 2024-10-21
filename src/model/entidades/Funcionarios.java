@@ -19,7 +19,7 @@ public class Funcionarios {
 
     public Funcionarios(String cpf, String nome, String senha, String sexo, int idade, String endereco, String email,
             String telefone,
-            String cargo) {
+            String cargo, int idFilial) {
         this.cpf = cpf;
         this.nome = nome;
         this.senha = senha;
@@ -27,6 +27,7 @@ public class Funcionarios {
         this.idade = idade;
         this.endereco = endereco;
         this.email = email;
+        this.idFilial = idFilial;
         this.telefone = telefone;
         this.cargo = cargo;
         LocalDateTime now = LocalDateTime.now();
