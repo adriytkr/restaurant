@@ -2,6 +2,8 @@ package src.model.entidades;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import src.model.DAO.PedidosDAO;
+
 public class Pedidos {
     private int idPedido;
     private int idCliente;
@@ -28,6 +30,7 @@ public class Pedidos {
         String formattedDateTime = now.format(formatter);
         this.dataPedido = formattedDateTime;
         this.status = "Em preparação";
+        this.valor = PedidosDAO.valorPedido(idBebida, quantidadeBebida, idPrato, quantidadePrato);
     }
 
     public void visualizarPedidos() {

@@ -6,7 +6,10 @@ import src.model.entidades.*;
 
 public class App {
     public static void main(String[] args) throws SQLException {
-        Ingredientes ingredienteTeste = new Ingredientes("Cheirinho verdeee", "Kg");
-        IngredientesDAO.deletarIngrediente(ingredienteTeste);
+        Pedidos p1 = new Pedidos(0, 0, 0, 0, 0, null, null);
+        p1.setIdPedido(5);
+        p1 = PedidosDAO.consultarPedido(p1);
+        // p1.visualizarPedidos();
+        PedidosDAO.deletarPedido(p1);
     }
 }
