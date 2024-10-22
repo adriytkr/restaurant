@@ -246,7 +246,7 @@ public class ClientesDAO {
         ClientesDAO.atualizarClienteNulo(cliente, conn);
     }
 
-    public static void deletarCliente(Clientes cliente) throws SQLException {
+    public static void deletarCliente(Clientes cliente){
         if (cliente.getIdCliente() == 0) {
             cliente = ClientesDAO.consultarCliente(cliente.getCpf());
         }
